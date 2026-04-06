@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>МЦКО Тренажёр 7 класс</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- ЭКРАН ВХОДА ПО КЛЮЧУ -->
+    <div id="loginScreen" class="login-screen">
+        <div class="login-box">
+            <h2>🔐 МЦКО Тренажёр</h2>
+            <p>Кирилл Бережанский — создатель</p>
+            <input type="text" id="keyInput" placeholder="Введи ключ доступа">
+            <button onclick="checkKey()">Войти</button>
+            <div id="loginError" class="error"></div>
+        </div>
+    </div>
+
+    <!-- ГЛАВНОЕ МЕНЮ -->
+    <div id="menuScreen" class="menu-screen" style="display:none">
+        <div class="menu-header">
+            <h1>📚 МЦКО Тренажёр</h1>
+            <div class="creator">Кирилл Бережанский — создатель</div>
+            <p class="subtitle">Выбери вариант для подготовки</p>
+            <div class="menu-buttons">
+                <button class="help-btn-main" onclick="showHelp()">❓ Помощь</button>
+                <button class="profile-btn" onclick="showProfile()">👤 Профиль</button>
+            </div>
+        </div>
+        <div id="variantsGrid" class="variants-grid"></div>
+    </div>
+
+    <!-- ЭКРАН ТЕСТИРОВАНИЯ -->
+    <div id="testArea" class="test-area" style="display:none">
+        <div class="top-bar">
+            <div>
+                <button class="back-btn" onclick="backToMenu()">← Назад</button>
+                <span style="margin-left:15px">Вариант <span id="variantNumDisplay">1</span></span>
+            </div>
+            <div class="timer-box">⏱️ <span id="timerDisplay">01:00:00</span></div>
+            <button class="finish-btn" id="finishBtn">Закончить</button>
+        </div>
+        <div class="main-area">
+            <div id="tasksPanel" class="tasks-panel"></div>
+            <div class="question-area">
+                <div class="question-header">
+                    <button class="help-btn-small" onclick="showHelp()">❓ Помощь</button>
+                </div>
+                <div id="questionText" class="question-text"></div>
+                <div class="answer-block">
+                    <span class="answer-label">Ответ:</span>
+                    <input type="text" id="answerInput" placeholder="введите число">
+                    <button class="save-btn" id="saveBtn">Сохранить ответ</button>
+                    <div id="savedMsg" class="saved-msg"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО РЕЗУЛЬТАТОВ -->
+    <div id="resultModal" class="modal">
+        <div class="modal-content">
+            <h2>📊 Результаты теста</h2>
+            <div id="resultStats"></div>
+            <div id="resultDetails"></div>
+            <button onclick="location.reload()">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПОМОЩИ -->
+    <div id="helpModal" class="modal">
+        <div class="modal-content">
+            <h2>📖 Как правильно готовиться к МЦКО</h2>
+            <ul class="help-list">
+                <li><strong>1.</strong> Внимательно читай условие</li>
+                <li><strong>2.</strong> Исключай заведомо неверные варианты</li>
+                <li><strong>3.</strong> Не зацикливайся на одном вопросе</li>
+                <li><strong>4.</strong> Перед тестом выспись</li>
+                <li><strong>5.</strong> Тренируй тайминг</li>
+            </ul>
+            <button onclick="closeHelp()">Закрыть</button>
+        </div>
+    </div>
+
+    <!-- МОДАЛЬНОЕ ОКНО ПРОФИЛЯ (только имя и ключ) -->
+    <div id="profileModal" class="modal">
+        <div class="modal-content" style="max-width: 400px;">
+            <h2>👤 Профиль</h2>
+            <div class="profile-info">
+                <p><strong>Имя:</strong> <span id="profileName"></span></p>
+                <p><strong>Ключ:</strong> <code id="profileKey"></code></p>
+            </div>
+            <button onclick="closeProfile()">Закрыть</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
